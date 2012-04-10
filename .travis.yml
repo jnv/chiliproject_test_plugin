@@ -7,6 +7,16 @@ rvm:
 #Prevents installation of plugin's gemfile
 gemfile: non-existent-gemfile
 
+before_install:
+  # Git repo of the ChiliProject/Redmine
+  - export MAIN_REPO="git://github.com/jnv/chiliproject-fit.git"
+  # Name of your plugin's repo
+  - export REPO_NAME=chiliproject_test_plugin
+  # Plugin's name/directory
+  - export PLUGIN_NAME=chiliproject_test_plugin
+  # Arguments passed to bundle install on ChiliProject's Gemfile
+  - export BUNDLE_ARGS="--without development sqlite"
+  - export TARGET_DIR="$HOME/chiliproject"
 before_script: "./test/ci/before_script.sh"
 script: "./test/ci/script.sh"
 
