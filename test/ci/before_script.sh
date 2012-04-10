@@ -15,7 +15,7 @@ PLUGIN_NAME=chiliproject_test_plugin
 TARGET_DIR=$HOME/chiliproject
 
 # Prepare ChiliProject
-git clone --depth=100 --quiet $MAIN_REPO $TARGET_DIR
+git clone --depth=100 $MAIN_REPO $TARGET_DIR
 
 cd $TARGET_DIR
 
@@ -26,6 +26,7 @@ export BUNDLE_GEMFILE=$TARGET_DIR/Gemfile
 
 bundle install --without development sqlite #FIXME: support for bundler_args
 
+echo "creating $DB database"
 case $DB in
   "mysql" )
     mysql -e 'create database chiliproject_test;'
