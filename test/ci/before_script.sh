@@ -37,4 +37,4 @@ case $DB in
 esac
 
 bundle exec rake db:migrate
-bundle exec rake db:migrate_plugins
+bundle exec rake db:migrate:plugins
