@@ -18,10 +18,23 @@ echo "creating $DB database"
 case $DB in
   "mysql" )
     mysql -e 'create database chiliproject_test;'
-    cp config/database.mysql.yml config/database.yml;;
+    cat > database.yml << EOF
+test:
+  adapter: mysql2
+  username: root
+  encoding: utf8
+  database: chiliproject_test
+EOF
+    ;;
   "postgres" )
     psql -c 'create database chiliproject_test;' -U postgres
-    cp config/database.postgres.yml config/database.yml;;
+    cat > database.yml << EOF
+test:
+  adapter: postgresql
+  database: chiliproject_test
+  username: postgres
+EOF
+    ;;
 esac
 
 bundle exec rake db:migrate

@@ -24,7 +24,7 @@ Configuration is passed to the scripts using environment variables. Variables ar
 ### MAIN_REPO
 `MAIN_REPO="git://github.com/jnv/chiliproject-fit.git"`
 URL of the Git repo with ChiliProject/Redmine which will use the plugin.
-Currently the source repo must contain `config/database.{mysql|postgres}.yml` files, hence the [official repository](https://github.com/chiliproject/chiliproject) is not used.
+Use `git://github.com/chiliproject/chiliproject.git` to test against the official repository.
 
 ### REPO_NAME
 `REPO_NAME=chiliproject_test_plugin`
