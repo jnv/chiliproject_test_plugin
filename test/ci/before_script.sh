@@ -18,7 +18,7 @@ echo "creating $DB database"
 case $DB in
   "mysql" )
     mysql -e 'create database chiliproject_test;'
-    cat > database.yml << EOF
+    cat > config/database.yml << EOF
 test:
   adapter: mysql2
   username: root
@@ -28,7 +28,7 @@ EOF
     ;;
   "postgres" )
     psql -c 'create database chiliproject_test;' -U postgres
-    cat > database.yml << EOF
+    cat > config/database.yml << EOF
 test:
   adapter: postgresql
   database: chiliproject_test
