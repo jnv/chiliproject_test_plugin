@@ -20,6 +20,15 @@ case $DB in
     mysql -e 'create database chiliproject_test;'
     cat > config/database.yml << EOF
 test:
+  adapter: mysql
+  database: chiliproject_test
+  username: postgres
+EOF
+    ;;
+  "mysql2" )
+    mysql -e 'create database chiliproject_test;'
+    cat > config/database.yml << EOF
+test:
   adapter: mysql2
   username: root
   encoding: utf8
