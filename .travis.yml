@@ -15,11 +15,11 @@ before_install:
   # Plugin's name/directory
   - export PLUGIN_NAME=chiliproject_test_plugin
   # Arguments passed to bundle install on ChiliProject's Gemfile
-  - export BUNDLE_ARGS="--without development sqlite"
+  #- export BUNDLE_ARGS="--without development sqlite"
   - export TARGET_DIR="$HOME/chiliproject"
 before_script: "./test/ci/before_script.sh"
 script: "./test/ci/script.sh"
 
 env:
-  - DB=mysql
-#  - DB=postgres
+  - "DB=mysql BUNDLE_WITHOUT=rmagick:mysql:postgres:sqlite"
+  - "DB=postgres BUNDLE_WITHOUT=rmagick:mysql:mysql2:sqlite"
