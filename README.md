@@ -1,5 +1,4 @@
-# Test plugin for ChiliProject/Redmine
-[![Build Status](https://secure.travis-ci.org/jnv/chiliproject_test_plugin.png?branch=master)](http://travis-ci.org/jnv/chiliproject_test_plugin)
+# Test plugin for ChiliProject/Redmine [![Build Status](https://secure.travis-ci.org/jnv/chiliproject_test_plugin.png?branch=master)](http://travis-ci.org/jnv/chiliproject_test_plugin)
 
 This is boilerplate/example plugin with [Travis CI](http://travis-ci.org/) integration.
 CI scripts are based on [Radiant CMS extensions testing](https://github.com/radiant/radiant/wiki/How-to-enable-Travis-CI-for-an-extension).
@@ -22,9 +21,9 @@ Modify `.travis.yml` to suit your needs (see *Configuration* section), add addit
 Configuration is passed to the scripts using environment variables. Variables are defined in `before_install` section of `.travis.yml`.
 
 ### MAIN_REPO
-`MAIN_REPO="git://github.com/jnv/chiliproject-fit.git"`
+`MAIN_REPO="git://github.com/chiliproject/chiliproject.git"`
 URL of the Git repo with ChiliProject/Redmine which will use the plugin.
-Use `git://github.com/chiliproject/chiliproject.git` to test against the official repository.
+Defaults to [the official ChiliProjectrepository](https://github.com/chiliproject/chiliproject).
 
 ### REPO_NAME
 `REPO_NAME=chiliproject_test_plugin`
@@ -35,11 +34,26 @@ Directory your plugin was cloned into by Travis, corresponds to the repository n
 How your plugin is identified by Rails Engines, name of the plugin's directory in vendor/plugins.
 Usually will be the same as `REPO_NAME`
 
-### BUNDLE_ARGS
-`BUNDLE_ARGS="--without development sqlite"`
-Arguments passed to `bundle install`, add as much stuff to `--without` as possible to make builds faster and Travis happier.
-
 ### TARGET_DIR
 `TARGET_DIR="$HOME/chiliproject"`
 Directory the MAIN_REPO will be cloned into and from which the tests will be run.
 
+## Environment
+
+### DB
+
+Defines adapter and database to use.
+Supported adapters: `mysql`, `mysql2`, `postgres`
+
+### BUNDLE_WITHOUT
+
+Defines Gemfile groups to ignore (passed into `bundle install --without`).
+
+### Example
+
+Based on [ChiliProject's .travis.yml](https://github.com/chiliproject/chiliproject/blob/master/.travis.yml)
+
+```shell
+# Use mysql2, ignore postgres, mysql
+DB=mysql2 BUNDLE_WITHOUT=rmagick:mysql:postgres:sqlite
+```
